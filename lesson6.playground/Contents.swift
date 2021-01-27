@@ -1,3 +1,48 @@
 import UIKit
 
-var str = "Hello, playground"
+
+
+
+struct Queue<T> {
+    private var array: [T] = []
+    
+    mutating func addToQueue(_ element: T) {
+        self.array.append(element)
+    }
+    
+    mutating func quitFromQueue() {
+        self.array.removeFirst()
+    }
+    
+    mutating func removeAll (where condition: (T) -> Bool) {
+        for (index, element) in array.enumerated().reversed() {
+            if condition (element) {
+                array.remove(at: index)
+            }
+        }
+    }
+}
+
+
+
+var queue = Queue<Int>()
+
+queue.addToQueue(1)
+queue.addToQueue(2)
+queue.addToQueue(3)
+queue.addToQueue(4)
+queue.addToQueue(5)
+
+//var queue = Queue<String>()
+//
+//queue.addToQueue("first")
+//queue.addToQueue("second")
+//queue.addToQueue("third")
+//queue.addToQueue("fourth")
+//queue.addToQueue("fifth")
+
+print(queue)
+
+queue.quitFromQueue()
+
+print(queue)
