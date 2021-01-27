@@ -14,9 +14,9 @@ struct Queue<T> {
         self.array.removeFirst()
     }
     
-    mutating func removeAll (where condition: (T) -> Bool) {
+    mutating func removeAll (where condition: (T) -> Int) {
         for (index, element) in array.enumerated().reversed() {
-            if condition (element) {
+            if (condition (element) != 0) {
                 array.remove(at: index)
             }
         }
@@ -46,3 +46,8 @@ print(queue)
 queue.quitFromQueue()
 
 print(queue)
+
+queue.removeAll {$0}
+
+print(queue)
+
